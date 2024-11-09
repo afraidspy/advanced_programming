@@ -1,0 +1,42 @@
+package estrategia;
+
+/**
+ * Clase  que representa el Contexto dentro del
+ * esquema del patrón Estrategi y el cuál hará uso de los algoritmos.
+ * @author Santizo Galicia Jessica.
+ */
+public class Encriptacion {
+
+  private Algoritmo algoritmo;
+  private String cadenaOriginal;
+
+
+  public Encriptacion(String cadenaOriginal){
+    this.cadenaOriginal = cadenaOriginal;
+  }
+
+  /**
+   * EStablece el agoritmo que se va a usar para encriptar o desencriptar una cadena de texto.
+   * @parama algoritmo -- Un algoritmo particular que implementa la interfaz Algoritmo.
+   */
+  public void establecerAlgoritmo(Algoritmo algoritmo){
+    this.algoritmo = algoritmo;
+  }
+  /**
+   * Método para encriptar una cadena,
+   * @param cadena -- La cadena a ser encriptada.
+   */
+  public void encriptar(String cadena){
+    cadenaOriginal = algoritmo.encriptar(cadena);
+    System.out.println("La cadena después de encriptar: "+cadenaOriginal);
+  }
+  /**
+   * Métodod para desencriptar una cadena y regresarla a su estado original.
+   * @param cadena -- la cadena a ser desencriptada
+   */
+  public void desencriptar(){
+  System.out.println("DEsencriptar " + cadenaOriginal);
+    System.out.println("La cadena después de desencriptar: "+ algoritmo.desEncriptar(cadenaOriginal));
+  }
+
+}

@@ -1,0 +1,36 @@
+
+/**
+ * Clase que permite crear un hilo usando la
+ * clase Thread.
+ * @author Jessica Santizo Galicia.
+ */
+
+public class EjemploThread extends Thread {
+
+  private String nombre;
+  
+  /**
+  * Constructor a partir de un parámetro.
+  * @param nombre -- el nombre del hilo.
+  */
+  public EjemploThread(String nombre){
+    this.nombre = nombre;
+  }
+
+  @Override
+   public void run (){
+    System.out.println("Se está ejecutando: " + nombre);
+   }
+
+
+  public static void main (String [] args){
+    Thread hiloUno =  new Thread(new EjemploThread("Hilo uno"));
+    Thread hiloDos =  new Thread(new EjemploThread("Hilo dos"));
+
+    hiloUno.start();
+    hiloDos.start();
+
+  }
+  
+
+}

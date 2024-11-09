@@ -1,0 +1,18 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Aplicacion;
+
+import Vista.LaberintoFrame;
+
+/**
+ *
+ * @author jessica
+ */
+public class PruebaLaberinto {
+    public static void main (String [] args){
+        LaberintoFrame laberinto = new LaberintoFrame("Laberinto");
+    }
+    
+}

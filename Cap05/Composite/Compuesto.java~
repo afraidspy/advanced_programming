@@ -1,0 +1,74 @@
+package Composite;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
+/**
+ * Clase que representa un compuesto implementado la interfaz Componente.
+ * @author Jessica
+ */
+public class Compuesto implements Componente {
+
+  private LinkedList<Componente> componentes;
+  private String nombre;
+  private double precio;
+
+  public Compuesto(String nombre, double precio){
+    this.nombre =  nombre;
+    this.precio = precio;
+    componentes = new LinkedList<Componente>();
+  }
+
+  public void agregarComponente(Componente c) {
+    componentes.add(c);
+  }
+
+  public void eliminarComponente(Componente c) {
+    componentes.remove(c);
+  }
+
+  public double obtenerPrecio(Componente c) {
+    Iterator it = componentes.iterator();
+    while (it.hasNext()) {
+      Componente comp = (Componente) it.next();
+      if (comp.obtenerNombre().equals(c.obtenerNombre())) {
+        return comp.obtenerPrecio();
+      }
+    }
+    return -1;
+  }
+
+  public double obtenerPrecio() {
+    double total = 0;
+    Iterator it = componentes.iterator();
+    while (it.hasNext()) {
+      total += ((Componente) it.next()).obtenerPrecio();
+    }
+    return total;
+  }
+
+  public Componente obtenerHijo(String nombre) {
+    Iterator it = componentes.iterator();
+    while (it.hasNext()) {
+      Componente comp = (Componente) it.next();
+      if (((Componente) it.next()).obtenerNombre().equals(nombre)) {
+        return comp;
+      }
+    }
+    return null;
+  }
+
+  public void descripcion() {
+    Iterator it = componentes.iterator();
+
+    System.out.println("Los elementos internos del componente "+ nombre + " son: ");
+    while (it.hasNext()) {
+      Componente comp = (Componente) it.next();
+      System.out.println( "> "+comp.obtenerNombre());
+    }
+  }
+
+  public String obtenerNombre() {
+    return nombre;
+  }
+}

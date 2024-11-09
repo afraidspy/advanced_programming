@@ -1,0 +1,125 @@
+package Modelo;
+
+/**
+ *Clase para representar al laberinto
+ * @author jessica
+ */
+public class LaberintoAleatorio {
+    
+    private int[][] matrizAleatoria;
+    private final int NUM_FILAS    = 45;
+    private final int NUM_COLUMNAS = 45;
+    
+    /**
+     * Constructor por omision que crea una matriz de tamaño fijo
+     */
+    public LaberintoAleatorio(){
+        matrizAleatoria = new int [NUM_FILAS][NUM_COLUMNAS];
+    }
+    
+    public int[][] obtenerLaberinto(){
+        return matrizAleatoria;
+    }
+    public void crearLaberintoAleatorio() {
+        int numVacios = 0; 
+        int numParedes = 0;  
+
+        int paredes = (NUM_FILAS/2 - 1)*NUM_COLUMNAS + NUM_FILAS*(NUM_COLUMNAS/2 - 1);
+        int[] paredFila = new int[paredes];
+        int[] paredCOl = new int[paredes];
+
+        for (int i = 0; i < NUM_FILAS; i++)
+            for (int j = 0; j < NUM_COLUMNAS; j++)
+                matrizAleatoria[i][j] = 1;
+
+        for (int i = 1; i < NUM_FILAS - 1; i += 2)
+            for (int j = 1; j < NUM_COLUMNAS - 1; j += 2) {
+                numVacios++;
+                matrizAleatoria[i][j] = -numVacios;
+                if (i < NUM_FILAS - 2) {
+                    paredFila[numParedes] = i + 1;
+                    paredCOl[numParedes] = j;
+                    numParedes++;
+                }
+                if (j < NUM_COLUMNAS - 2) {
+                    paredFila[numParedes] = i;
+                    paredCOl[numParedes] = j + 1;
+                    numParedes++;
+                }
+             }
+        for (int i = numParedes - 2; i > 0; i--) {
+            int r = 1 + (int) (Math.random() * (i + 1));
+            desplazar(paredFila[r], paredCOl[r]);
+            paredFila[r] = paredFila[i];
+            paredCOl[r] = paredCOl[i];
+        }
+        for (int i = 1; i < NUM_FILAS - 1; i++)
+           for (int j = 1; j < NUM_COLUMNAS - 1; j++)
+              if (matrizAleatoria[i][j] < 0)
+                  matrizAleatoria[i][j] = 3;
+    }
+    public void desplazar(int row, int col) {
+        if (row%2 == 1 && matrizAleatoria[row][col-1] != matrizAleatoria[row][col+1]) {
+            llenar(row, col-1, matrizAleatoria[row][col-1], matrizAleatoria[row][col+1]);
+            matrizAleatoria[row][col] = matrizAleatoria[row][col+1];
+            
+        } else if (row%2 == 0 && matrizAleatoria[row-1][col] != matrizAleatoria[row+1][col]) {
+            llenar(row-1, col, matrizAleatoria[row-1][col], matrizAleatoria[row+1][col]);
+            matrizAleatoria[row][col] = matrizAleatoria[row+1][col];
+            
+        }
+    }
+
+    // Called by tearDown() to change "room codes".
+    public void llenar(int row, int col, int replace, int replaceWith) {
+        if (matrizAleatoria[row][col] == replace) {
+            matrizAleatoria[row][col] = replaceWith;
+            llenar(row+1, col, replace, replaceWith);
+            llenar(row-1, col, replace, replaceWith);
+            llenar(row, col+1, replace, replaceWith);
+            llenar(row, col-1, replace, replaceWith);
+        }
+    }
+
+    public boolean resolverLaberinto(int row, int col) {
+        if (matrizAleatoria[row][col] == 3) { 
+            // Add this cell to the path.
+            matrizAleatoria[row][col] = 2;
+            if (row == NUM_FILAS-2 && col == NUM_COLUMNAS-2){
+               //System.out.println(row+" , "+col);
+                return true;
+            }    
+            if (resolverLaberinto(row-1, col) ||
+                resolverLaberinto(row, col-1) ||
+                resolverLaberinto(row+1, col) ||
+                resolverLaberinto(row, col+1)){
+                System.out.println(row+" , "+col);
+                return true;
+            }    
+
+            matrizAleatoria[row][col] = 4;
+        }
+        return false;
+    }
+    
+    public static void main (String [] args){
+       LaberintoAleatorio lab =  new LaberintoAleatorio();
+       lab.crearLaberintoAleatorio();
+       int [][] construccion = lab.obtenerLaberinto();
+       for(int i = 0; i< construccion.length; i++){
+           for(int j = 0; j< construccion.length; j++){
+               System.out.print (construccion[i][j]+" ");
+           }
+           System.out.println();
+       }
+       lab.resolverLaberinto(1, 1);
+       
+       construccion = lab.obtenerLaberinto();
+       for(int i = 0; i< construccion.length; i++){
+           for(int j = 0; j< construccion.length; j++){
+               System.out.print (construccion[i][j]+" ");
+           }
+           System.out.println();
+       }
+    }
+}

@@ -1,0 +1,28 @@
+
+package edificio;
+
+/**
+ * Clase que representa un edificio y cuya idea es
+ * saber la cantidad de personas que acceden a él a través
+ * de dos entradas.
+ * @author Santizo Galicia Jessica.
+ */
+public class Edificio {
+
+  private int numeroPersonas;
+  private String nombre;
+
+  public Edificio(String nombre){
+    this.nombre = nombre;
+  }
+
+  public  synchronized void aumentarPersonas(Puerta p){
+    numeroPersonas++;
+    System.out.println("Entra entrando la persona: " + numeroPersonas + " por la puerta" + p.getNombre());
+  }
+
+  public synchronized  int numPersonas(){
+    return numeroPersonas;
+  }
+
+}

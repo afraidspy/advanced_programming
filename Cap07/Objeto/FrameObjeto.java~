@@ -1,0 +1,141 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Objeto;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author Jessica Santizo Galicia
+ */
+public class FrameObjeto extends JFrame {
+
+    private LienzoObjetoPanel superficie;
+    private JComboBox tipoMov;
+    private JComboBox movimientos;
+
+    private JLabel mensaje;
+    private ManejadorEventos manejador;
+
+    /**
+     * Constructor a partir de un p&aacuteramtro, aqu&iacute agregamos el panel
+     * al frame y el bot&oacuten. Establecemos su ubicaci&oacute.
+     *
+     * @param nombre -- recibe el nombre del frame que aparece en la barra de
+     * t&iacutetulo.
+     */
+    public FrameObjeto(String nombre) {
+        super(nombre);
+        manejador = new ManejadorEventos(this);
+        this.setLayout(new BorderLayout());
+        this.add(panelMovimientos(), BorderLayout.NORTH);
+        this.add(controlMovimientos(), BorderLayout.CENTER);
+        this.add(superficie(), BorderLayout.SOUTH);
+        this.setSize(500, 550);
+        this.setLocation(400, 100);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    /**
+     * Regresa un panel, con las opciones para mover el objeto: Arriba, abajo,
+     * izquierda o derecha,
+     *
+     * @return JPanel -- Regresa el panel con las diferentes opciones para los
+     * movimientos.
+     */
+    private JPanel panelMovimientos() {
+        JPanel movimientosP = new JPanel();
+        tipoMov = new JComboBox(new String[]{"Elige una opción", "Arriba", "Abajo", "Izquierda", "Derecha"});
+        tipoMov.setEditable(false);
+        movimientos = new JComboBox(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",});
+        movimientos.setEditable(false);
+
+        JButton agregar = new JButton("Agregar");
+        agregar.addActionListener(manejador);
+        agregar.setActionCommand("Agregar");
+        movimientosP.add(tipoMov);
+        movimientosP.add(movimientos);
+        movimientosP.add(agregar);
+        return movimientosP;
+    }
+
+    /**
+     * Regresa un panel para la etiqueta que mostrará la cantidad de movimientos
+     * que el usuario ha programado.
+     *
+     * @param JPanel -- el panel que contiene la etiqueta de mensaje.
+     */
+    private JPanel controlMovimientos() {
+        JPanel controlP = new JPanel(new FlowLayout());
+        mensaje = new JLabel("");
+        controlP.add(panelBotones());
+        controlP.add(mensaje);
+        return controlP;
+    }
+
+    /**
+     * Regresa un panel de botones, con las opciones que le usuario tiene para
+     * ejecutar un solo movimiento o todos.
+     *
+     * @param JPanel -- El panel con dos botones.
+     */
+    private JPanel panelBotones() {
+        JPanel panelBotones = new JPanel();
+        JButton ejecutar1 = new JButton("Ejecutar uno");
+        ejecutar1.addActionListener(manejador);
+        ejecutar1.setActionCommand("ejecutar1");
+        JButton ejecutarTodos = new JButton("Ejecutar Todos");
+        ejecutarTodos.addActionListener(manejador);
+        ejecutarTodos.setActionCommand("ejecutarTodos");
+
+        panelBotones.add(ejecutar1);
+        panelBotones.add(ejecutarTodos);
+        return panelBotones;
+    }
+
+    /**
+     * Regresa el panel el cuál representará el área en dónde se va a mover el
+     * objeto.
+     *
+     * @return JPanel -- el área principal del programa.
+     */
+    private JPanel superficie() {
+        JPanel sup = new JPanel();
+        superficie = new LienzoObjetoPanel(500, 400);
+//    superficie.setSize(500, 400);
+        sup.add(superficie);
+        this.setVisible(true);
+        return sup;
+    }
+
+    /**
+     * Regresa un combo con la lista de los movimientos permitidos por el
+     * usuario.
+     *
+     * @return JComboBox -- Lista de movimientos permitidos.
+     */
+    public JComboBox getTipoMov() {
+        return tipoMov;
+    }
+
+    public JLabel getMensaje() {
+        return mensaje;
+    }
+
+    public LienzoObjetoPanel getSuperficie() {
+        return superficie;
+    }
+    
+     public JComboBox getMovimientos() {
+        return movimientos;
+    }
+
+}

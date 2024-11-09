@@ -1,0 +1,42 @@
+
+
+/**
+ * Clase para probar los métodos de
+ * ArbolB
+ * @author Santizo Galicia Jessica.
+ */
+public class PruebaArbolB {
+    public static void main (String [] args){
+	ArbolBI a =  new ArbolB();
+	System.out.println("Se insertarán los siguientes números: 2, 4, 23, 12, 24, 35, 10, 38, 102, 47, 32, 1");
+        a.insertar(2);
+ 	a.insertar(4);
+  	a.insertar(23);
+  	a.insertar(12);
+  	a.insertar(24);
+  	a.insertar(35);
+  	a.insertar(10);
+  	a.insertar(38);
+  	a.insertar(102);
+  	a.insertar(47);
+  	a.insertar(32);
+  	a.insertar(1);
+
+	System.out.println("El árbol original  impreso por niveles contiene los siguientes datos:");
+	a.imprimeNiveles();
+	if(a.estaVacio())
+		System.out.println("El árbol es vacío");
+	else
+		System.out.println("El árbol no esta vacío");
+	
+	System.out.printñn("Después de eliminar la llave 1, el árbol impreso por niveles es: ");
+	
+	a.imprimeNiveles();
+
+	System.out.println("¿El número 89 es elemento del arbol B? " + a.buscar(89));
+	
+	System.out.println("¿El número 35 es elemento del árbol B? " + a.buscar(89));
+   
+    }
+    
+}

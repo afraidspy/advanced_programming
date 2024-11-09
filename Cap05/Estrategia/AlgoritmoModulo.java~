@@ -1,0 +1,47 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package estrategia;
+
+/**
+ *
+ * @author Jess
+ */
+public class AlgoritmoModulo implements Algoritmo {
+
+  private char [] alfabeto = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+
+
+  public String encriptar(String cadenaOriginal) {
+    String cadCodificada = "";
+    for(int i= 0; i < cadenaOriginal.length(); i++){
+      int pos = (3 * posicionCaracterOriginal(cadenaOriginal.charAt(i)) + 5) % 26;
+      cadCodificada += alfabeto[pos];
+    }
+    return cadCodificada;
+  }
+
+  public String desEncriptar(String cadenaCifrada) {
+  String cadDecodificada = "";
+    for(int i= 0; i < cadenaCifrada.length(); i++){
+      int pos = 9 *(posicionCaracterOriginal(cadenaCifrada.charAt(i)) - 5)  % 26;
+      cadDecodificada += alfabeto[pos];
+    }
+    return cadDecodificada;
+  }
+
+    /**
+   * Método que devuelve el índice de un carácter dentro del arreglo.
+   * @return int -- La posición del caractér o -1 si no se encuentra.
+   */
+  private int posicionCaracterOriginal(char c){
+    for (int i = 0; i < alfabeto.length; i++){
+      if(alfabeto[i] == c)
+        return i;
+    }
+    return -1;
+  }
+
+}

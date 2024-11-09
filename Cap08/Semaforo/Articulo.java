@@ -1,0 +1,66 @@
+
+/**
+ * Clase que representa un artículo de una tienda,
+ * a partir del precio, nombre y un identificador.
+ * @author Jessica Santizo Galicia.
+ */
+public class Articulo {
+    
+    private double precio;
+    private String nombre;
+    private int id;
+    
+    /**
+     * Constructor a partir de varios parámetros.
+     * @param id -- el id del artículo,
+     * @param nombre -- el nombre del artículo.
+     * @param  precio -- el nombre del precio.
+     */
+    public Articulo(int id, String nombre,double precio){
+        this.precio =  precio;
+        this.nombre = nombre;
+        this.id = id;
+    }
+    /**
+     * @return Regresa el precio del artículo.
+     */
+    public double getPrecio() {
+        return precio;
+    }
+    /**
+     * @param precio -- Establece el precio del artículo.
+     */
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+    /**
+     * @return Regresa el nombre artículo.
+     */
+    public String getNombre() {
+        return nombre;
+    }
+    /**
+     * @param nombre -- Establece el nombre del artículo.
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    /**
+     * @return Regresa el id del artículo.
+     */
+    public int getId() {
+        return id;
+    }
+    /**
+     * @param id -- Establece el id del artículo.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    @Override
+    public String toString(){
+        return id +"/"+nombre + "/" + precio+"\n";
+    }
+    
+}

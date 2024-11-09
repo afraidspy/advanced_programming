@@ -1,0 +1,62 @@
+package estrategia;
+
+/**
+ * Algoritmo para encriptar y desencriptar datos
+ * a través de un desplazamiento en el abecedario.
+ * @author Jessica Santizo Galicia.
+ */
+public class AlgoritmoCesar implements Algoritmo{
+
+  private char [] alfabetoOriginal =    {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+  private char [] alfabDesplazamiento = {'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','A','B'};
+  
+  /**
+   *Método que permite codificar una cadena.
+   * @param cadenaOriginal -- la cadena a ser encriptada.
+   * @return String -- la cadena codificada.
+   */
+  public String encriptar(String cadenaOriginal) {
+   String cadenaCifrada = "";
+   for (int i = 0; i < cadenaOriginal.length(); i++){
+      cadenaCifrada += alfabDesplazamiento[posicionCaracterOriginal(cadenaOriginal.charAt(i))];
+   }
+    return cadenaCifrada;
+  }
+  /**
+   * Método que devuelve el índice de un carácter dentro del arreglo.
+   * @return int -- La posición del caractér o -1 si no se encuentra.
+   */
+  private int posicionCaracterOriginal(char c){
+    for (int i = 0; i < alfabetoOriginal.length; i++){
+      if(alfabetoOriginal[i] == c)
+        return i;
+    }
+    return -1;
+  }
+  /**
+   * Método que devuelve el índice de un carácter dentro del arreglo que posee
+   * las letras del alfabeto con un desplazamiento de dos.
+   * @return int -- La posición del caractér o -1 si no se encuentra.
+   */
+
+    private int posicionCaracterDesp(char c){
+    for (int i = 0; i < alfabDesplazamiento.length; i++){
+      if(alfabDesplazamiento[i] == c)
+        return i;
+    }
+    return -1;
+  }
+  /**
+   * Método que permite desencriptar una cadena.
+   * @return String -- Regresa la cadena a su estado original.
+   */
+  public String desEncriptar(String cadenaCifrada) {
+    String cadenaOriginal= "";
+    for (int i = 0; i < cadenaCifrada.length(); i++){
+      cadenaOriginal += alfabetoOriginal[posicionCaracterDesp(cadenaCifrada.charAt(i))];
+   }
+    return cadenaOriginal;
+   
+  } 
+
+}

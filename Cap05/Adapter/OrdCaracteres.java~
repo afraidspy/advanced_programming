@@ -1,0 +1,22 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package adapter;
+
+/**
+ *
+ * @author Jessica
+ */
+public class OrdCaracteres implements OrdenarCaracteresI {
+
+  public char[] ordenar(char[] elementos) {
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
+
+  public void imprimir(char[] elementos) {
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
+
+}

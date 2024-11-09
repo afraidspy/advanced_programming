@@ -1,0 +1,45 @@
+
+
+/**
+ * Clase que controla el tipo de calificaciones de un alumno.
+ * @author Santizo Galicia Jessica
+ */
+public class Calificacion {
+
+  private String nombre;
+  private int puntaje;
+
+  /**
+   * Constructor a partir de varios parámetros.
+   * @param nombre -- el nombre del alumno.
+   * @param puntaje -- el puntaje obtenido.
+    */
+  public Calificacion(String nombre, int puntaje) {
+    this.nombre = nombre;
+    this.puntaje = puntaje;
+  }
+  /**
+   * Método que dado el puntaje del alumno, regresa una
+   * letra específica.
+   * @return char -- 
+   */
+  public char  obtenerGradoPuntaje() {
+    if (puntaje >= 90) {
+      return 'A';
+    } else {  
+      if (puntaje >= 80) {
+        return 'B';
+      } else {
+        if (puntaje >= 70) {
+          return 'C';
+        } else { 
+          if (puntaje >= 60) {
+            return 'D';
+          } else {
+            return 'N';
+          }
+        }
+      }
+    }
+  }
+}

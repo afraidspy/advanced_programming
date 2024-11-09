@@ -1,0 +1,24 @@
+package ejemplo;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+/**
+ * Clase que extiende de JFrame para mostrar un
+ * botón dentro de una ventana.
+ * @author Santizo Galicia Jessica
+ */
+public class BotonFrame extends JFrame{
+  
+  private JButton boton;
+
+  public BotonFrame(String nombre){
+       super(nombre);
+       boton = new JButton("Presioname");
+       boton.addActionListener(new ManejadorEventos());
+       boton.setActionCommand("presioname");
+       this.add(boton);
+       this.setVisible(true);
+       this.setLocation(400, 400);
+       setDefaultCloseOperation( JFrame .EXIT_ON_CLOSE) ; //evento cerrar
+  }
+
+}

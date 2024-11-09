@@ -1,0 +1,38 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package adapter;
+
+/**
+ *
+ * @author Jess
+ */
+public class Adaptador {
+
+  /**
+   * Método que permite convertir un arreglo de carácteres
+   * por su valor correspondiente en código ASCII
+   * @param char [] elem - el arreglo a convertir a carácteres.
+   * @return int[] -- el arreglo con enteros.
+   */
+  public int[] conversorInt(char[] elem) {
+    int[] vector = new int[elem.length];
+    for (int i = 0; i < vector.length; i++) {
+      vector[i] = (int) elem[i];
+    }
+    return vector;
+  }
+  /**
+   * Método que permite imprimir los elementos del arreglo
+   * como carácteres.
+   * @param elem - el arreglo con enteros a imprimir
+   * con su valor correspondiente en caractér.
+   */
+  public void imprimir(int [] elem){
+    for (int i = 0 ; i < elem.length; i++){
+      char c =  (char)elem[i];
+      System.out.print(c + " , ");
+    }
+  }
+}
